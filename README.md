@@ -7,12 +7,13 @@
 |--------------------|---------------------|------------------|
 | name               | string              | null: false      |
 | e-mail             | string              | null: false      |
-| password           | string              | null:false       |
+| password           | string              | null: false      |
+| birthday           | string              | null: false      |
 
 ### Association
 
 * has_many :items
-* has_many :comments
+* belongs_to :comments
 
 ## items table
 
@@ -20,47 +21,28 @@
 |-----------------|------------|-------------------|
 | title           | string     | null: false       |
 | text            | text       | null: false       |
-| address         | text       | null: false       |
-| price           | text       | null: false       |
+| address         | string     | null: false       |
+| price           | string     | null: false       |
+| category        | string     | null: false       |
 | user            | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :comments
+- has_one :purchased
 
-## comments table
+ ## Purchased table
 
-| Column      | Type       | Options           |
-|-------------|------------|-------------------|
-| text        | text       | null: false       |
-| user        | references | foreign_key: true |
-| item        | references | foreign_key: true |
+| Column           | Type       | Options           |
+|------------------|------------|-------------------|
+| item             | references | foreign_key: true |
+| user             | references | foreign_key: true |
+| credit card      | string     | unique: true      |
+| shipping address | string     | null: false       |
+| postal code      | string     | null: false       |
+| TEL              | string     | null: false       |
 
 ### Association
 
 - belongs_to :items
 - belongs_to :user
- 
- ## buys table
-
-| Column      | Type       | Options           |
-|-------------|------------|-------------------|
-| text        | text       | null: false       |
-| item        | references | foreign_key: true |
-
-### Association
-
-- belongs_to :items
-- has_one : shipping address
-
- ## shipping address table
-
-| Column           | Type       | Options           |
-|------------------|------------|-------------------|
-| TEL              | string     | null: false       |
-| shipping_address | string     | foreign_key: true |
-
-### Association
-
-- belongs_to :buy
