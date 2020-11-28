@@ -1,24 +1,66 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# DB 設計
 
-Things you may want to cover:
+## users table
 
-* Ruby version
+| Column             | Type                | Options          |
+|--------------------|---------------------|------------------|
+| name               | string              | null: false      |
+| e-mail             | string              | null: false      |
+| password           | string              | null:false       |
 
-* System dependencies
+### Association
 
-* Configuration
+* has_many :items
+* has_many :comments
 
-* Database creation
+## items table
 
-* Database initialization
+| Column          | Type       | Options           |
+|-----------------|------------|-------------------|
+| title           | string     | null: false       |
+| text            | text       | null: false       |
+| address         | text       | null: false       |
+| price           | text       | null: false       |
+| user            | references | foreign_key: true |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- has_many :comments
 
-* Deployment instructions
+## comments table
 
-* ...
+| Column      | Type       | Options           |
+|-------------|------------|-------------------|
+| text        | text       | null: false       |
+| user        | references | foreign_key: true |
+| item        | references | foreign_key: true |
+
+### Association
+
+- belongs_to :items
+- belongs_to :user
+ 
+ ## buys table
+
+| Column      | Type       | Options           |
+|-------------|------------|-------------------|
+| text        | text       | null: false       |
+| item        | references | foreign_key: true |
+
+### Association
+
+- belongs_to :items
+- has_one : shipping address
+
+ ## shipping address table
+
+| Column           | Type       | Options           |
+|------------------|------------|-------------------|
+| TEL              | string     | null: false       |
+| shipping_address | string     | foreign_key: true |
+
+### Association
+
+- belongs_to :buy
