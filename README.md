@@ -64,5 +64,6 @@
 
 belongs_to :Purchased
 belongs_to :users
+k
 
 
