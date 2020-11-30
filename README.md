@@ -6,7 +6,7 @@
 | Column             | Type                | Options          |
 |--------------------|---------------------|------------------|
 | e-mail             | string              | null: false      |
-| password           | string              | null: false      |
+| encrypted_password | string              | null: false      |
 | birthday           | date                | null: false      |
 | surname            | string              | null: false      |
 | name               | string              | null: false      |
@@ -15,8 +15,8 @@
 
 ### Association
 
-* has_many :items
-* has_many :purchase management
+* has_many :item
+* has_many :purchase managements
 
 ## items table
 
@@ -24,10 +24,9 @@
 |------------------|------------|-------------------|
 | title            | string     | null: false       |
 | text             | text       | null: false       |
-| address          | string     | null: false       |
 | price            | string     | null: false       |
 | category         | string     | null: false       |
-| user             | references | foreign_key: true |
+| user_id          | references | foreign_key: true |
 | status           | string     | null: false       |
 | shipping charges | string     | null: false       |
 | shipment source  | string     | null: false       |
@@ -43,7 +42,7 @@
 
 | Column           | Type       | Options           |
 |------------------|------------|-------------------|
-| item             | references | foreign_key: true |
+| item_id          | references | foreign_key: true |
 | credit card      | string     | unique: true      |
 | shipping address | string     | null: false       |
 | postal code      | string     | null: false       |
@@ -51,18 +50,17 @@
 
 ### Association
 
-- belongs_to :items
-- belongs_to :purchase management
+- belongs_to :item
+- belongs_to :purchase_management table
 
-| Column           | Type       | Options           |
-|------------------|------------|-------------------|
-| item             | references | foreign_key: true |
-| user             | references | foreign_key: true |
-| Purchase date    | date       | null: false       |
+| Column              | Type       | Options           |
+|---------------------|------------|-------------------|
+| item_id             | references | foreign_key: true |
+| user_id             | references | foreign_key: true |
 
 ### Association
 
 belongs_to :Purchased
-belongs_to :users
+belongs_to :user
 
 
