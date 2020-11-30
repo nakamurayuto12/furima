@@ -47,6 +47,8 @@
 | shipping address | string     | null: false       |
 | postal code      | string     | null: false       |
 | TEL              | string     | null: false       |
+| municipalities   | string     | null: false       |
+| address          | string     | null: false       |
 
 ### Association
 
