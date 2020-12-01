@@ -10,8 +10,8 @@
 | birthday           | date                | null: false      |
 | surname            | string              | null: false      |
 | name               | string              | null: false      |
-| surname furigana   | string              | null: false      |
-| name furigana      | string              | null: false      |
+| surname_furigana   | string              | null: false      |
+| name_furigana      | string              | null: false      |
 | nickname           | string              | null: false      |
 
 
@@ -30,30 +30,31 @@
 | category_id        | string     | null: false       |
 | user               | references | foreign_key: true |
 | status             | string     | null: false       |
-| shipping charges   | string     | null: false       |
-| shipment source_id | string     | null: false       |
-| day to ship      | string     | null: false       |
+| shipping_charges   | string     | null: false       |
+| shipment_source_id | string     | null: false       |
+| day to ship        | string     | null: false       |
 
 
 ### Association
 
 - belongs_to :user
-- has_one :purchased table
+- has_one :purchased_table
 
  ## Purchased table
 
-| Column           | Type       | Options           |
-|------------------|------------|-------------------|
-| shipping address | string     | null: false       |
-| postal code      | string     | null: false       |
-| phone_number     | string     | null: false       |
-| municipalities   | string     | null: false       |
-| address          | string     | null: false       |
+| Column              | Type       | Options           |
+|---------------------|------------|-------------------|
+| shipping_address    | string     | null: false       |
+| postal_code         | string     | null: false       |
+| phone_number        | string     | null: false       |
+| municipalities      | string     | null: false       |
+| address.id          | string     | null: false       |
+| purchase_management | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :item
 - belongs_to :purchase_management table
+- belongs_to :item 
 
 | Column              | Type       | Options           |
 |---------------------|------------|-------------------|
@@ -62,7 +63,9 @@
 
 ### Association
 
-belongs_to :Purchased table
+has_one :Purchased table
 belongs_to :user
+belongs_to :item
+
 
 
