@@ -3,16 +3,16 @@
 
 ## users table
 
-| Column             | Type                | Options          |
-|--------------------|---------------------|------------------|
-| email              | string              | unique: true     |
-| encrypted_password | string              | null: false      |
-| birthday           | date                | null: false      |
-| surname            | string              | null: false      |
-| name               | string              | null: false      |
-| surname_furigana   | string              | null: false      |
-| name_furigana      | string              | null: false      |
-| nickname           | string              | null: false      |
+| Column             | Type                | Options                       |
+|--------------------|---------------------|-------------------------------|
+| email              | string              | unique: true, null: false     |
+| encrypted_password | string              | null: false                   |
+| birthday           | date                | null: false                   |
+| surname            | string              | null: false                   |
+| name               | string              | null: false                   |
+| surname_furigana   | string              | null: false                   |
+| name_furigana      | string              | null: false                   |
+| nickname           | string              | null: false                   |
 
 ### Association
 
@@ -63,13 +63,9 @@
 |---------------------|------------|-------------------|
 | item                | references | foreign_key: true |
 | user                | references | foreign_key: true |
-| purchased           | references | foreign_key: true |
 
 ### Association
 
 has_one :purchased
 belongs_to :user
 belongs_to :item
-
-
-
