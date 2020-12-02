@@ -48,7 +48,7 @@
 | postal_code         | string     | null: false       |
 | phone_number        | string     | null: false       |
 | municipalities      | string     | null: false       |
-| address.id          | string     | null: false       |
+| address_id          | string     | null: false       |
 | purchase_management | references | foreign_key: true |
 | building            | string     |                   |
 
