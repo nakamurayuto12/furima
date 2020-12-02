@@ -5,7 +5,7 @@
 
 | Column             | Type                | Options          |
 |--------------------|---------------------|------------------|
-| email              | string              | null: false      |
+| email              | string              | unique: true     |
 | encrypted_password | string              | null: false      |
 | birthday           | date                | null: false      |
 | surname            | string              | null: false      |
@@ -17,7 +17,7 @@
 ### Association
 
 * has_many :items
-* has_many :purchase managements
+* has_many :purchase_managements
 
 ## items table
 
@@ -31,14 +31,13 @@
 | status_id           | integer    | null: false       |
 | shipping_charges_id | integer    | null: false       |
 | shipment_source_id  | integer    | null: false       |
-| day to ship_id      | integer    | null: false       |
+| day_to_ship_id      | integer    | null: false       |
 
 
 ### Association
 
 - belongs_to :user
-- has_one :purchased_table
-
+- has_one :purchased
  ## Purchased table
 
 | Column              | Type       | Options           |
@@ -54,17 +53,20 @@
 
 ### Association
 
-- belongs_to :purchase_management table
+- belongs_to :purchase_management
 - belongs_to :item 
+
+## purchase_management table
 
 | Column              | Type       | Options           |
 |---------------------|------------|-------------------|
 | item                | references | foreign_key: true |
 | user                | references | foreign_key: true |
+| purchased           | references | foreign_key: true |
 
 ### Association
 
-has_one :Purchased table
+has_one :Purchased
 belongs_to :user
 belongs_to :item
 
