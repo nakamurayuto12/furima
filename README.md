@@ -25,7 +25,7 @@
 |---------------------|------------|-------------------|
 | title               | string     | null: false       |
 | text                | text       | null: false       |
-| price               | string     | null: false       |
+| price               | integer    | null: false       |
 | category_id         | integer    | null: false       |
 | user                | references | foreign_key: true |
 | status_id           | integer    | null: false       |
@@ -49,7 +49,8 @@
 | municipalities      | string     | null: false       |
 | address.id          | string     | null: false       |
 | purchase_management | references | foreign_key: true |
-| building            | string     | null: false       |
+| building            | string     |                   |
+| item                | references | foreign_key: true |
 
 ### Association
 
