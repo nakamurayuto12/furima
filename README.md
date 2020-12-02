@@ -14,7 +14,6 @@
 | name_furigana      | string              | null: false      |
 | nickname           | string              | null: false      |
 
-
 ### Association
 
 * has_many :items
@@ -22,17 +21,17 @@
 
 ## items table
 
-| Column             | Type       | Options           |
-|--------------------|------------|-------------------|
-| title_id           | string     | null: false       |
-| text               | text       | null: false       |
-| price_id           | integer    | null: false       |
-| category_id        | string     | null: false       |
-| user               | references | foreign_key: true |
-| status             | string     | null: false       |
-| shipping_charges   | string     | null: false       |
-| shipment_source_id | string     | null: false       |
-| day to ship        | string     | null: false       |
+| Column              | Type       | Options           |
+|---------------------|------------|-------------------|
+| title               | string     | null: false       |
+| text                | text       | null: false       |
+| price               | string     | null: false       |
+| category_id         | integer    | null: false       |
+| user                | references | foreign_key: true |
+| status_id           | integer    | null: false       |
+| shipping_charges_id | integer    | null: false       |
+| shipment_source_id  | integer    | null: false       |
+| day to ship_id      | integer    | null: false       |
 
 
 ### Association
@@ -50,6 +49,7 @@
 | municipalities      | string     | null: false       |
 | address.id          | string     | null: false       |
 | purchase_management | references | foreign_key: true |
+| building            | string     | null: false       |
 
 ### Association
 
