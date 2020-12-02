@@ -37,7 +37,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchased
+- has_one :purchase_management
 
  ## Purchased table
 
@@ -50,12 +50,10 @@
 | address.id          | string     | null: false       |
 | purchase_management | references | foreign_key: true |
 | building            | string     |                   |
-| item                | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :purchase_management
-- belongs_to :item 
 
 ## purchase_management table
 
