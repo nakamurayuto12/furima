@@ -38,6 +38,7 @@
 
 - belongs_to :user
 - has_one :purchased
+
  ## Purchased table
 
 | Column              | Type       | Options           |
@@ -66,7 +67,7 @@
 
 ### Association
 
-has_one :Purchased
+has_one :purchased
 belongs_to :user
 belongs_to :item
 
