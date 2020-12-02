@@ -18,6 +18,8 @@
 
 * has_many :items
 * has_many :purchase_managements
+* belongs_to :Purchased
+
 
 ## items table
 
@@ -54,6 +56,8 @@
 ### Association
 
 - belongs_to :purchase_management
+- belongs_to :user
+
 
 ## purchase_management table
 
