@@ -15,8 +15,8 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
       it "passwordが6文字以上であれば登録できる" do
-        @user.password = "000000"
-        @user.password_confirmation = "000000"
+        @user.password = "hoge12"
+        @user.password_confirmation = "hoge12"
         expect(@user).to be_valid
       end
       it "苗字の記述があれば登録できる" do
@@ -59,6 +59,11 @@ RSpec.describe User, type: :model do
         another_user.valid?
         expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
+      it "emailに@が含まれていない場合に登録ができないこと" do
+        @user.email = "test.test.co.jp"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
       it "passwordが空では登録できない" do
         @user.password = ""
         @user.valid?
@@ -74,6 +79,18 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it "パスワードが数字のみの場合に登録ができないこと" do
+        @user.password = "000000"
+        @user.password_confirmation = "000000"
+        @user.valid?
+        expect(@user.errors.full_messages).to include()
+      end
+      it "パスワードが英字のみ場合に登録ができないこと" do
+        @user.password = "aaaaaa"
+        @user.password_confirmation = "aaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include()
       end
       it "苗字が空では登録ができない" do
         @user.surname = ""
@@ -94,6 +111,26 @@ RSpec.describe User, type: :model do
         @user.name_furigana = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Name furigana can't be blank")
+      end
+      it "苗字が全角漢字、ひらがな、カタカナ以外の場合に登録ができないこと" do
+        @user.surname = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Surname is invalid. Input full-width characters.")
+      end
+      it "名前が全角漢字、ひらがな、カタカナ以外の場合に登録ができないこと" do
+        @user.name = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Name is invalid. Input full-width characters.") 
+      end
+      it "苗字が全角カタカナ以外の場合に登録ができないこと" do
+        @user.surname_furigana = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Surname furigana is invalid. Input full-width katakana characters.")
+      end
+      it "苗字が全角カタカナ以外の場合に登録ができないこと" do
+        @user.name_furigana = "aaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Name furigana is invalid. Input full-width katakana characters.")
       end
       it "生年月日がからでは登録ができない" do
         @user.birthday = ""
