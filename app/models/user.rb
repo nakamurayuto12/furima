@@ -13,6 +13,4 @@ class User < ApplicationRecord
     validates :nickname
   end
   validates :password, format: { with: /\A[a-z0-9]+\z/i, message: "is invalid. Input half-width characters."}
-  validates :password_confirmation, format: { with: /\A[a-z0-9]+\z/i, message: "is invalid. Input half-width characters."}
-
 end

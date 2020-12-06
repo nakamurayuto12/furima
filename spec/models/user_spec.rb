@@ -81,8 +81,8 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it "パスワードが数字のみの場合に登録ができないこと" do
-        @user.password = "000000"
-        @user.password_confirmation = "000000"
+        @user.password = 000000
+        @user.password_confirmation = 000000
         @user.valid?
         expect(@user.errors.full_messages).to include()
       end
