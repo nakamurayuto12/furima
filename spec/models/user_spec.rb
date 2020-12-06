@@ -70,8 +70,8 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
       it "passwordが5文字以下であれば登録できない" do
-        @user.password = "00000"
-        @user.password_confirmation = "00000"
+        @user.password = "hoge1"
+        @user.password_confirmation = "hoge1"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
@@ -122,12 +122,12 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Name is invalid. Input full-width characters.") 
       end
-      it "苗字が全角カタカナ以外の場合に登録ができないこと" do
+      it "苗字のフリガナが全角カタカナ以外の場合に登録ができないこと" do
         @user.surname_furigana = "aaa"
         @user.valid?
         expect(@user.errors.full_messages).to include("Surname furigana is invalid. Input full-width katakana characters.")
       end
-      it "苗字が全角カタカナ以外の場合に登録ができないこと" do
+      it "名前のフリガナが全角カタカナ以外の場合に登録ができないこと" do
         @user.name_furigana = "aaa"
         @user.valid?
         expect(@user.errors.full_messages).to include("Name furigana is invalid. Input full-width katakana characters.")
