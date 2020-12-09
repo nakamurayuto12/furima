@@ -86,7 +86,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Shipping charges must be other than 1")
       end
       it "発送元の地域が---では出品ができないこと" do
-        @item.shipment_source_id = 2
+        @item.shipment_source_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include()
       end
@@ -104,6 +104,11 @@ RSpec.describe Item, type: :model do
         @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+      it "販売価格が半角数字でないと出品できない" do
+        @item.price = "３００"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number", "Price is not a number")
       end
     end
   end
