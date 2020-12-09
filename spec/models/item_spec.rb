@@ -10,38 +10,6 @@ RSpec.describe Item, type: :model do
       it "出品画像と商品名、商品の説明、商品の詳細のカテゴリーと商品の状態、配送料についての配送料の負担、発送元の地域、発送までの日数と販売価格があれば出品できる" do
         expect(@item).to be_valid
       end
-      it "商品名が40文字以下であれば出品できる" do
-        @item.title = "a"
-        expect(@item).to be_valid
-      end
-      it "商品の説明が1000文字以下であれば出品できる" do
-        @item.text = "a"
-        expect(@item).to be_valid
-      end
-      it "カテゴリーがあれば出品できる" do
-        @item.category_id = 2
-        expect(@item).to be_valid
-      end
-      it "商品の状態があれば出品ができる" do
-        @item.status_id = 2
-        expect(@item).to be_valid
-      end
-      it "配送料の負担があれば出品ができる" do
-        @item.shipping_charges_id = 2
-        expect(@item).to be_valid
-      end
-      it "発送元の地域があれば出品ができる" do
-        @item.shipment_source_id = 2
-        expect(@item).to be_valid
-      end
-      it "発送までの日数があれば出品ができる" do
-        @item.day_to_ship_id = 2
-        expect(@item).to be_valid
-      end
-      it "販売価格があれば出品ができる" do
-        @item.price = 300
-        expect(@item).to be_valid
-      end
     end
 
     context '商品出品がうまくいかないとき' do
@@ -107,6 +75,16 @@ RSpec.describe Item, type: :model do
       end
       it "販売価格が半角数字でないと出品できない" do
         @item.price = "３００"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number", "Price is not a number")
+      end
+      it "販売価格が半角英数混合でないと出品できない" do
+        @item.price = "aa３００"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number", "Price is not a number")
+      end
+      it "販売価格が半角英語だけでないと出品できない" do
+        @item.price = "aaa"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number", "Price is not a number")
       end
