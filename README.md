@@ -40,7 +40,7 @@
 - belongs_to :user
 - has_one :purchase_management
 
- ## Purchased table
+ ## purchased table
 
 | Column              | Type       | Options           |
 |---------------------|------------|-------------------|
