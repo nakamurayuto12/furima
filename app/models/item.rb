@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :status
-  belongs_to :shipping_charge
+  belongs_to :shipping_charges
   belongs_to :shipment_source
   belongs_to :day_to_ship
 
