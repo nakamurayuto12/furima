@@ -6,9 +6,6 @@ class PurchaseManagementsController < ApplicationController
     @purchase_management_purchased = PurchaseManagementPurchased.new
   end
 
-  def new
-  end
-
   def create
     @purchase_management_purchased = PurchaseManagementPurchased.new(purchased_params)
      if @purchase_management_purchased.valid?
