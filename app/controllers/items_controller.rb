@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @items = Item.order("created_at DESC")
+    @items = Item.order(created_at: "DESC")
   end
 
   def new
@@ -24,11 +24,12 @@ class ItemsController < ApplicationController
 
   def edit
     redirect_to root_path if current_user.id != @item.user_id
+    redirect_to root_path if @item.purchase_management != nil
   end
 
   def update
     if @item.update(item_params)
-      redirect_to root_path
+      redirect_to item_path(@item.id)
     else
       render :edit
     end

@@ -1,4 +1,4 @@
-class Genre < ActiveHash::Base
+class Address < ActiveHash::Base
   self.data = [
       {id: 0, name: '---'},
       {id: 1, name: '北海道'}, {id: 2, name: '青森県'}, {id: 3, name: '岩手県'},
@@ -19,5 +19,5 @@ class Genre < ActiveHash::Base
       {id: 46, name: '鹿児島県'}, {id: 47, name: '沖縄県'}, {id: 48, name: '未定'}
   ]
   include ActiveHash::Associations 
-  has_many :purchased
-  end
+  has_many :purchaseds
+end

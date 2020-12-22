@@ -18,7 +18,6 @@
 
 * has_many :items
 * has_many :purchase_managements
-* belongs_to :purchased
 
 ## items table
 
@@ -40,7 +39,7 @@
 - belongs_to :user
 - has_one :purchase_management
 
- ## Purchased table
+ ## purchased table
 
 | Column              | Type       | Options           |
 |---------------------|------------|-------------------|
@@ -55,7 +54,6 @@
 ### Association
 
 - belongs_to :purchase_management
-- belongs_to :user
 
 ## purchase_management table
 
