@@ -26,7 +26,7 @@ RSpec.describe PurchaseManagementPurchased, type: :model do
         expect(@purchase_management_purchased.errors.full_messages).to include("Postal code can't be blank")
       end
       it "郵便番号に「-」がないと購入ができない" do
-        @purchase_management_purchased.postal_code = 1234567
+        @purchase_management_purchased.postal_code = "1234567"
         @purchase_management_purchased.valid?
         expect(@purchase_management_purchased.errors.full_messages).to include("Postal code is invalid")
       end
@@ -52,6 +52,11 @@ RSpec.describe PurchaseManagementPurchased, type: :model do
       end
       it '電話番号が12桁以上では登録できない' do
         @purchase_management_purchased.phone_number = '090123456789'
+        @purchase_management_purchased.valid?
+        expect(@purchase_management_purchased.errors.full_messages).to include("Phone number is invalid")
+      end
+      it '電話番号に-(ハイフン)を含む場合は登録できない' do
+        @purchase_management_purchased.phone_number = '090-1234-5678'
         @purchase_management_purchased.valid?
         expect(@purchase_management_purchased.errors.full_messages).to include("Phone number is invalid")
       end
