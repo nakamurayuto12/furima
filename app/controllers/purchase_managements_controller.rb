@@ -3,7 +3,11 @@ class PurchaseManagementsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @purchase_management_purchased = PurchaseManagementPurchased.new
+    if user_signed_in? && current_user.id != @item.user_id && @item.purchase_management == nil
+      @purchase_management_purchased = PurchaseManagementPurchased.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create

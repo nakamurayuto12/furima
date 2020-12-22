@@ -14,7 +14,7 @@ class PurchaseManagementPurchased
   validates :address_id,         numericality: { other_than: 0 }
 
   def save
-    purchase_management_id = PurchaseManagement.create(user_id: user_id, item_id: item_id)
-    Purchased.create(shipping_address: shipping_address, postal_code: postal_code, phone_number: postal_code, municipalities: municipalities, address_id: address_id, building: building, purchase_management_id: purchase_management_id)
+    purchase_management = PurchaseManagement.create(user_id: user_id, item_id: item_id)
+    Purchased.create(shipping_address: shipping_address, postal_code: postal_code, phone_number: phone_number, municipalities: municipalities, address_id: address_id, building: building, purchase_management_id: purchase_management.id)
   end
 end
