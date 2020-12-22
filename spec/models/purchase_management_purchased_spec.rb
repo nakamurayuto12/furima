@@ -60,6 +60,16 @@ RSpec.describe PurchaseManagementPurchased, type: :model do
         @purchase_management_purchased.valid?
         expect(@purchase_management_purchased.errors.full_messages).to include("Token can't be blank")
       end
+      it 'user_idが空では登録できないこと' do
+        @purchase_management_purchased.user_id = nil
+        @purchase_management_purchased.valid?
+        expect(@purchase_management_purchased.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では登録できないこと' do
+        @purchase_management_purchased.item_id = nil
+        @purchase_management_purchased.valid?
+        expect(@purchase_management_purchased.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end
